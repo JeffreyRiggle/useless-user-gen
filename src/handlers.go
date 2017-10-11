@@ -73,3 +73,8 @@ func HandleGet(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Write(data)
 }
+
+func HandleClear(w http.ResponseWriter, r *http.Request) {
+	manager.ClearUsers()
+	w.WriteHeader(http.StatusOK)
+}

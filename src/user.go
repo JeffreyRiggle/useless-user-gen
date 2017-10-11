@@ -2,6 +2,13 @@ package main
 
 import "math/rand"
 
+type UserConfigRepository struct {
+	FirstNames  map[int]FName  `json:"firstnames"`
+	LastNames   map[int]string `json:"lastnames"`
+	Occupations map[int]string `json:"occupations"`
+	Adjectives  map[int]string `json:"adjectives"`
+}
+
 type User struct {
 	Id         int    `json:"id"`
 	FirstName  string `json:"firstname"`
@@ -32,21 +39,21 @@ func generateGender() string {
 
 func generateFN(gender string) string {
 	for {
-		ran := rand.Intn(len(config.FirstNames))
+		ran := rand.Intn(len(repo.FirstNames))
 
-		if config.FirstNames[ran].Gender == gender {
-			return config.FirstNames[ran].Name
+		if repo.FirstNames[ran].Gender == gender {
+			return repo.FirstNames[ran].Name
 		}
 	}
 }
 
 func generateLN() string {
-	ran := rand.Intn(len(config.LastNames))
-	return config.LastNames[ran]
+	ran := rand.Intn(len(repo.LastNames))
+	return repo.LastNames[ran]
 }
 
 func generateOccupation() string {
-	ran1 := rand.Intn(len(config.Occupations))
-	ran2 := rand.Intn(len(config.Adjectives))
-	return config.Adjectives[ran2] + " " + config.Occupations[ran1]
+	ran1 := rand.Intn(len(repo.Occupations))
+	ran2 := rand.Intn(len(repo.Adjectives))
+	return repo.Adjectives[ran2] + " " + repo.Occupations[ran1]
 }

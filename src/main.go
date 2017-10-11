@@ -9,13 +9,14 @@ import (
 	"github.com/gorilla/handlers"
 )
 
-var config Config
+var repo UserConfigRepository
 
 func main() {
 	if len(os.Args) < 1 {
 		panic("No config provided")
 	}
 
+	repo = *new(UserConfigRepository)
 	readConfig(os.Args[1])
 	manager = UserManager{make(map[int]*User, 0)}
 	router := NewRouter()
@@ -28,6 +29,7 @@ func main() {
 }
 
 func readConfig(file string) {
+	var config Config
 	configFile, err := os.Open(file)
 	defer configFile.Close()
 
@@ -37,4 +39,20 @@ func readConfig(file string) {
 
 	parser := json.NewDecoder(configFile)
 	parser.Decode(&config)
+
+	for i, v := range config.FirstNames {
+		repo.FirstNames[i] = v
+	}
+
+	for i, v := range config.LastNames {
+		repo.LastNames[i] = v
+	}
+
+	for i, v := range config.Adjectives {
+		repo.Adjectives[i] = v
+	}
+
+	for i, v := range config.Occupations {
+		repo.Occupations[i] = v
+	}
 }

@@ -39,3 +39,7 @@ func (manager UserManager) GetUsers() []*User {
 
 	return retVal
 }
+
+func (manager UserManager) ClearUsers() {
+	manager.Users = make(map[int]*User, 0)
+}

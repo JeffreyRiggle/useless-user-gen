@@ -1,10 +1,10 @@
 package main
 
 type Config struct {
-	FirstNames  map[int]FName  `json:"firstnames"`
-	LastNames   map[int]string `json:"lastnames"`
-	Occupations map[int]string `json:"occupations"`
-	Adjectives  map[int]string `json:"adjectives"`
+	FirstNames  []FName  `json:"firstnames"`
+	LastNames   []string `json:"lastnames"`
+	Occupations []string `json:"occupations"`
+	Adjectives  []string `json:"adjectives"`
 }
 
 type FName struct {

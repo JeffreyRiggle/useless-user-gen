@@ -44,4 +44,10 @@ var routes = Routes{
 		"/uug/v1/users",
 		HandleGet,
 	},
+	Route{
+		"Clear",
+		"DELETE",
+		"/uug/v1/clear",
+		HandleClear,
+	},
 }
