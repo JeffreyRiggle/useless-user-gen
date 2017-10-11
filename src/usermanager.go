@@ -7,10 +7,10 @@ type UserManager struct {
 }
 
 func (manager UserManager) CreateUsers(numberOfUsers int) []*User {
-	createdUsers := make([]*User, numberOfUsers)
+	createdUsers := make([]*User, 0)
 
 	for i := 0; i < numberOfUsers; i++ {
-		user := createUser(len(manager.Users) + 1)
+		user := createUser(len(manager.Users))
 		createdUsers = append(createdUsers, &user)
 		manager.Users[user.Id] = &user
 	}
@@ -19,10 +19,10 @@ func (manager UserManager) CreateUsers(numberOfUsers int) []*User {
 }
 
 func (manager UserManager) UpdateUsers(numberOfUsers int) []*User {
-	updatedUsers := make([]*User, numberOfUsers)
+	updatedUsers := make([]*User, 0)
 
 	for i := 0; i < numberOfUsers; i++ {
-		user := updateUser(*manager.Users[rand.Intn(len(manager.Users))])
+		user := updateUser(*manager.Users[rand.Intn(len(manager.Users)-1)])
 		updatedUsers = append(updatedUsers, &user)
 		manager.Users[user.Id] = &user
 	}
@@ -31,7 +31,7 @@ func (manager UserManager) UpdateUsers(numberOfUsers int) []*User {
 }
 
 func (manager UserManager) GetUsers() []*User {
-	retVal := make([]*User, len(manager.Users))
+	retVal := make([]*User, 0)
 
 	for _, user := range manager.Users {
 		retVal = append(retVal, user)
@@ -41,5 +41,7 @@ func (manager UserManager) GetUsers() []*User {
 }
 
 func (manager UserManager) ClearUsers() {
-	manager.Users = make(map[int]*User, 0)
+	for k := range manager.Users {
+		delete(manager.Users, k)
+	}
 }

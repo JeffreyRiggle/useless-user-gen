@@ -8,11 +8,11 @@ import (
 var manager UserManager
 
 type CreateRequest struct {
-	NumberToCreate int
+	NumberToCreate int `json:"numbertocreate"`
 }
 
 type UpdateRequest struct {
-	NumberToUpdate int
+	NumberToUpdate int `json:"numbertoupdate"`
 }
 
 func HandleCreate(w http.ResponseWriter, r *http.Request) {

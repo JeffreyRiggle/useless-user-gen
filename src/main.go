@@ -16,7 +16,7 @@ func main() {
 		panic("No config provided")
 	}
 
-	repo = *new(UserConfigRepository)
+	repo = UserConfigRepository{make(map[int]FName, 0), make(map[int]string, 0), make(map[int]string, 0), make(map[int]string, 0)}
 	readConfig(os.Args[1])
 	manager = UserManager{make(map[int]*User, 0)}
 	router := NewRouter()

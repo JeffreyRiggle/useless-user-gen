@@ -24,11 +24,11 @@ func createUser(id int) User {
 }
 
 func updateUser(user User) User {
-	return User{user.Id, "", "", "", ""}
+	return User{user.Id, generateFN(user.Gender), generateLN(), generateOccupation(), user.Gender}
 }
 
 func generateGender() string {
-	g := rand.Intn(1)
+	g := rand.Intn(2)
 
 	if g == 1 {
 		return "m"
